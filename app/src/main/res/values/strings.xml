@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Go Sushi</string>
+    <string name="register">dodaj restoran</string>
+    <string name="chooseLocation">Izaberi lokaciju restorana</string>
 </resources>
