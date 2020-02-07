@@ -107,6 +107,8 @@ public class RegisterActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                                 pushInformationToDataBase(restourantModel);
+                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(i);
                                 finish();
                             } else {
                                 try {

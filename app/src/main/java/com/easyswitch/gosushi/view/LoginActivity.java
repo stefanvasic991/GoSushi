@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     RecyclerView rvLocation;
 
     LocationAdapter adapter;
-    List<String> locationList = new ArrayList<>();
 
     private List<RestourantModel> restourantModels;
     private DatabaseReference ref;
@@ -52,28 +51,13 @@ public class LoginActivity extends AppCompatActivity {
         initComponents();
         getListFromDb();
 
-        locationList.add("Banovo Brdo");
-        locationList.add("Vračar");
-        locationList.add("Vračar Crveni Krst");
-        locationList.add("Belville");
-
-        adapter = new LocationAdapter(this, locationList);
-        rvLocation.setLayoutManager(new LinearLayoutManager(this));
-        rvLocation.setAdapter(adapter);
-
-        adapter.setOnLocationClick(new LocationAdapter.OnLocationClick() {
-            @Override
-            public void onClick(View view, int position, String location) {
-                Intent i = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(i);
-            }
-        });
     }
 
     @OnClick(R.id.fab)
     public void register() {
         Intent i = new Intent(this, RegisterActivity.class);
         startActivity(i);
+        finish();
     }
 
     private void getListFromDb() {
@@ -87,6 +71,20 @@ public class LoginActivity extends AppCompatActivity {
                     RestourantModel restourantModel = ds.getValue(RestourantModel.class);
                     restourantModels.add(restourantModel);
                 }
+
+                adapter = new LocationAdapter(getApplication(), restourantModels);
+                rvLocation.setLayoutManager(new LinearLayoutManager(getApplication()));
+                rvLocation.setAdapter(adapter);
+
+
+                adapter.setOnLocationClick(new LocationAdapter.OnLocationClick() {
+                    @Override
+                    public void onClick(View view, int position, RestourantModel location) {
+
+                        Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                        startActivity(i);
+                    }
+                });
             }
 
             @Override
