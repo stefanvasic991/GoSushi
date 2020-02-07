@@ -7,11 +7,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.easyswitch.gosushi.R;
 import com.easyswitch.gosushi.adapter.LocationAdapter;
+import com.easyswitch.gosushi.model.RestourantModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import butterknife.BindView;
@@ -26,11 +38,19 @@ public class LoginActivity extends AppCompatActivity {
     LocationAdapter adapter;
     List<String> locationList = new ArrayList<>();
 
+    private List<RestourantModel> restourantModels;
+    private DatabaseReference ref;
+    private FirebaseUser firebaseUser;
+    private FirebaseDatabase database;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        initComponents();
+        getListFromDb();
 
         locationList.add("Banovo Brdo");
         locationList.add("Vračar");
@@ -54,5 +74,32 @@ public class LoginActivity extends AppCompatActivity {
     public void register() {
         Intent i = new Intent(this, RegisterActivity.class);
         startActivity(i);
+    }
+
+    private void getListFromDb() {
+        ref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference allRestorants = ref.child("Restourant Information");
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<RestourantModel> bookModelList = new ArrayList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    RestourantModel restourantModel = ds.getValue(RestourantModel.class);
+                    restourantModels.add(restourantModel);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        allRestorants.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private void initComponents() {
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        restourantModels = new ArrayList<>();
     }
 }

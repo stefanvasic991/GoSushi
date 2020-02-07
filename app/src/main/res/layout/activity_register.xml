@@ -97,8 +97,9 @@
         android:background="@drawable/item_background"
         android:text="@string/register"
         android:textSize="40dp"
+        android:id="@+id/txt_register"
         android:textAllCaps="true"
         android:textAlignment="center"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/sky_blue"
         app:cornerRadius="15dp" />
 </RelativeLayout>
