@@ -10,7 +10,7 @@
         android:id="@+id/tvLocation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fish_background"
+        android:background="@drawable/button_background"
         android:text="Vračar"
         android:textSize="50dp"
         android:textColor="@color/colorWhite"

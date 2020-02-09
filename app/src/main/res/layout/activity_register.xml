@@ -71,35 +71,35 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilConfirmPassword"
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/tilConfirmPassword"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tilPassword"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginEnd="20dp">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/etConfirmPassword"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="ponovi sifru" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <Button
+        android:id="@+id/txt_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tilPassword"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="ponovi sifru" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tilConfirmPassword"
         android:layout_marginTop="50dp"
-        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/item_background"
+        android:background="@drawable/button_background"
         android:text="@string/register"
-        android:textSize="40dp"
-        android:id="@+id/txt_register"
-        android:textAllCaps="true"
         android:textAlignment="center"
-        android:textColor="@color/sky_blue"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="40dp"
         app:cornerRadius="15dp" />
 </RelativeLayout>

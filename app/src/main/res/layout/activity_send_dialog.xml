@@ -1,184 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    app:cardCornerRadius="20dp"
+    app:contentPadding="24dp"
+    app:cardElevation="16dp"
+    tools:context=".dialog.SendDialog">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dialog_shape"
-        tools:context=".dialog.SendDialog">
-
-        <TextView
-            android:id="@+id/tvLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:text="Vračar"
-            android:textSize="50dp"
-            android:textColor="@color/colorPrimary"/>
-
-        <LinearLayout
-            android:id="@+id/llProduct"
-            android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_below="@+id/tvLocation"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Proizvod"
-                android:textSize="30dp"
-                android:textColor="@color/colorPrimary" />
-
-            <TextView
-                android:id="@+id/tvProduct"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Losos"
-                android:textAlignment="viewStart"
-                android:textSize="30dp"
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llDateTime"
-            android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_below="@+id/llProduct"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Vreme štampe"
-                android:textSize="30dp"
-                android:textColor="@color/colorPrimary" />
-
-            <TextView
-                android:id="@+id/tvDateTime"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="25.02.2020 12:44"
-                android:textAlignment="viewStart"
-                android:textSize="30dp"
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llDateExpired"
-            android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_below="@+id/llDateTime"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Vreme iskorišćenja"
-                android:textSize="30dp"
-                android:textColor="@color/colorPrimary" />
-
-            <TextView
-                android:id="@+id/tvDateExpired"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="25.02.2020 12:44"
-                android:textAlignment="viewStart"
-                android:textSize="30dp"
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llweight"
-            android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_below="@+id/llDateExpired"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="Težina"
-                android:textSize="30dp"
-                android:textColor="@color/colorPrimary" />
-
-            <EditText
-                android:id="@+id/etWeight"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:textAlignment="viewStart"
-                android:cursorVisible="true"
-                android:inputType="numberDecimal"
-                android:textColor="@color/colorPrimary"
-                android:textSize="30dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:text="kg"
-                android:textColor="@color/colorPrimary"
-                android:textSize="30dp" />
-        </LinearLayout>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_below="@+id/llweight"
-            android:orientation="horizontal">
+            tools:context=".dialog.SendDialog">
 
             <TextView
-                android:id="@+id/tvCancel"
+                android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Vračar"
+                android:textSize="40sp"
+                android:textColor="@color/colorPrimary"/>
+
+            <LinearLayout
+                android:id="@+id/llProduct"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginTop="30dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:text="poništi"
-                android:textAllCaps="true"
-                android:textColor="@color/colorRed"
-                android:textSize="40sp" />
-
-            <TextView
-                android:id="@+id/tvSend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:text="štampaj"
-                android:textAlignment="viewEnd"
-                android:textAllCaps="true"
-                android:textColor="@color/colorGreen"
-                android:textSize="40sp" />
-        </LinearLayout>
-    </RelativeLayout>
-</RelativeLayout>
+                android:layout_below="@+id/tvLocation"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="@string/product"
+                    android:textSize="22sp"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/tvProduct"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="Losos"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_below="@+id/llProduct"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="@string/print_time"
+                    android:textSize="22sp"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/tvDateTime"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="25.02.2020 12:44"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDateExpired"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_below="@+id/llDateTime"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="@string/expired_time"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/tvDateExpired"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="25.02.2020 12:44"
+                    android:textAlignment="viewStart"
+                    android:textSize="22sp"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llweight"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_below="@+id/llDateExpired"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="@string/weight"
+                    android:textSize="22sp"
+                    android:textColor="@color/colorPrimary" />
+
+                <EditText
+                    android:id="@+id/etWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:textAlignment="viewStart"
+                    android:cursorVisible="true"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:text="kg"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_below="@+id/llweight"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvSend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:background="@drawable/print_button"
+                    android:text="@string/print"
+                    android:textAllCaps="true"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="30sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/tvSend"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:text="@string/undo"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

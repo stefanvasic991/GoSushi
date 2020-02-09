@@ -50,10 +50,10 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputLayout tilPassword;
     @BindView(R.id.etPassword)
     TextInputEditText etPassword;
-    @BindView(R.id.tilConfirmPassword)
-    TextInputLayout tilConfirmPassword;
-    @BindView(R.id.etConfirmPassword)
-    TextInputEditText ettilConfirmPassword;
+//    @BindView(R.id.tilConfirmPassword)
+//    TextInputLayout tilConfirmPassword;
+//    @BindView(R.id.etConfirmPassword)
+//    TextInputEditText ettilConfirmPassword;
     @BindView(R.id.txt_register)
     TextView txt_register;
     private FirebaseAuth mAuth;

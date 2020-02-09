@@ -9,8 +9,8 @@
     </style>
 
     <style name="AppThemeDialog" parent="Theme.MaterialComponents.Light.Dialog">
-        <item name="colorAccent">@color/colorWhite</item>
         <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorWhite</item>
     </style>
 
 </resources>

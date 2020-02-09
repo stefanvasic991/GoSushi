@@ -3,6 +3,7 @@ package com.easyswitch.gosushi.dialog;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.text.Selection;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +59,8 @@ public class SendDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_dialog);
         ButterKnife.bind(this);
+        getWindow().setBackgroundDrawable(ContextCompat.getDrawable(this, android.R.color.transparent));
+        getWindow().setGravity(Gravity.CENTER_HORIZONTAL);
 
         Date printTime = new Date(System.currentTimeMillis());
         Date expiredTime = new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(8));
