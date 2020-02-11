@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onClick(View view, int position, RestourantModel location) {
 
                         Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                        i.putExtra("location", location.getLocation());
                         startActivity(i);
                     }
                 });

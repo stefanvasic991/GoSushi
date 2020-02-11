@@ -31,12 +31,14 @@ public class HomeActivity extends AppCompatActivity {
 
     List<Fish> fishList = new ArrayList<>();
     FishAdapter adapter;
+    private String location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+        location = getIntent().getStringExtra("location");
 
         for (int i = 0; i < 24; i++) {
             fishList.add(new Fish());
@@ -51,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view, int position, Fish fish) {
 
                 Intent i = new Intent(HomeActivity.this, SendDialog.class);
+                i.putExtra("location", location);
                 startActivity(i);
             }
         });

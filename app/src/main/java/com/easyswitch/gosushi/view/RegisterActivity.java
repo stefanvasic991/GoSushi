@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputLayout tilPassword;
     @BindView(R.id.etPassword)
     TextInputEditText etPassword;
-//    @BindView(R.id.tilConfirmPassword)
+    //    @BindView(R.id.tilConfirmPassword)
 //    TextInputLayout tilConfirmPassword;
 //    @BindView(R.id.etConfirmPassword)
 //    TextInputEditText ettilConfirmPassword;
@@ -89,53 +89,25 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pushInformationToFireBase();
+                backToHome();
             }
         });
     }
 
+    private void backToHome() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void pushInformationToFireBase() {
-        String email = etAdress.getText().toString();
-        String password = etPassword.getText().toString();
         restourantModel.setLocation(etLocation.getText().toString());
         restourantModel.setCity(etCity.getText().toString());
-
-        if (etPassword.length() > 5 && etAdress.getText().toString().contains("@")) {
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                                pushInformationToDataBase(restourantModel);
-                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                                startActivity(i);
-                                finish();
-                            } else {
-                                try {
-                                    throw task.getException();
-                                } catch (FirebaseAuthUserCollisionException e) {
-                                    Toast.makeText(RegisterActivity.this,
-                                            "Email, already exist",
-                                            Toast.LENGTH_SHORT).show();
-                                } catch (FirebaseAuthInvalidCredentialsException e) {
-                                    Toast.makeText(getApplicationContext(), "Your mail doesn't exist", Toast.LENGTH_LONG).show();
-                                } catch (Exception e) {
-                                }
-                            }
-                        }
-                    });
-        } else {
-            if (etAdress.getText().toString().equalsIgnoreCase("")) {
-                Toast.makeText(getApplicationContext(), "You must enter email", Toast.LENGTH_LONG).show();
-            } else if (!etAdress.getText().toString().equalsIgnoreCase("") && !etAdress.getText().toString().contains("@")) {
-                Toast.makeText(getApplicationContext(), "You need enter valid mail", Toast.LENGTH_LONG).show();
-            } else if (etPassword.getText().toString().length() < 6) {
-                Toast.makeText(getApplicationContext(), "Your password is too short", Toast.LENGTH_LONG).show();
-            }
-        }
+        restourantModel.setAdress(etAdress.getText().toString());
+        pushInformationToDataBase(restourantModel);
     }
 
     private void pushInformationToDataBase(RestourantModel restourantModel) {
-        ref.child("Restourant Information").child(firebaseUser.getUid()).setValue(restourantModel);
+        ref.child("Restourant Information").child(restourantModel.getLocation()).setValue(restourantModel);
     }
 }

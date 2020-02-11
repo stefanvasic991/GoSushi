@@ -6,7 +6,10 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,7 +24,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.easyswitch.gosushi.R;
+import com.easyswitch.gosushi.model.Fish;
+import com.easyswitch.gosushi.model.RestourantModel;
 import com.easyswitch.gosushi.view.HomeActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 import org.threeten.bp.LocalDate;
@@ -52,6 +61,11 @@ public class SendDialog extends AppCompatActivity {
     TextView tvDateExpired;
     @BindView(R.id.etWeight)
     EditText etWeight;
+    private String location;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference ref;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -59,6 +73,8 @@ public class SendDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_dialog);
         ButterKnife.bind(this);
+        initComponents();
+        location = getIntent().getStringExtra("location");
         getWindow().setBackgroundDrawable(ContextCompat.getDrawable(this, android.R.color.transparent));
         getWindow().setGravity(Gravity.CENTER_HORIZONTAL);
 
@@ -81,6 +97,23 @@ public class SendDialog extends AppCompatActivity {
             etWeight.setError("Unesi težinu");
             return;
         }
+        Fish fish = new Fish();
+        fish.setEndDate(tvDateExpired.getText().toString());
+        fish.setStartDate(tvDateExpired.getText().toString());
+        fish.setMass(Integer.parseInt(etWeight.getText().toString()));
+        fish.setName("Losos");
+        pushInformationToFireBase(fish);
         finish();
+    }
+
+
+    private void initComponents(){
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference();
+    }
+
+    private void pushInformationToFireBase(Fish fish){
+        ref.child("Fish Information").child(location).push().setValue(fish);
     }
 }

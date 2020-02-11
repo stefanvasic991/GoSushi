@@ -4,6 +4,7 @@ public class RestourantModel {
 
     private String location;
     private String city;
+    private String adress;
 
     public String getLocation() {
         return location;
@@ -19,5 +20,13 @@ public class RestourantModel {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 }
