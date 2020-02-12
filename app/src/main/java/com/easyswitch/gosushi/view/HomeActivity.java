@@ -2,23 +2,18 @@ package com.easyswitch.gosushi.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.easyswitch.gosushi.R;
-import com.easyswitch.gosushi.adapter.FishAdapter;
+import com.easyswitch.gosushi.adapter.ProductAdapter;
 import com.easyswitch.gosushi.dialog.SendDialog;
-import com.easyswitch.gosushi.model.Fish;
+import com.easyswitch.gosushi.model.Product;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -29,8 +24,8 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.rvFish)
     RecyclerView rvFish;
 
-    List<Fish> fishList = new ArrayList<>();
-    FishAdapter adapter;
+    List<Product> productList = new ArrayList<>();
+    ProductAdapter adapter;
     private String location;
 
     @Override
@@ -40,20 +35,30 @@ public class HomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         location = getIntent().getStringExtra("location");
 
-        for (int i = 0; i < 24; i++) {
-            fishList.add(new Fish());
-        }
+        productList.add(new Product("Tuna"));
+        productList.add(new Product("Brancin"));
+        productList.add(new Product("Orada"));
+        productList.add(new Product("Losos"));
+        productList.add(new Product("Piletina"));
+        productList.add(new Product("Teletina"));
+        productList.add(new Product("Pirinač"));
+        productList.add(new Product("Šargarepa"));
+        productList.add(new Product("Goma"));
+        productList.add(new Product("Mango"));
+        productList.add(new Product("Avokado"));
 
-        adapter = new FishAdapter(this, fishList);
+
+        adapter = new ProductAdapter(this, productList);
         rvFish.setLayoutManager(new GridLayoutManager(getApplication(), 2));
         rvFish.setAdapter(adapter);
 
-        adapter.setOnFishClick(new FishAdapter.OnFishClick() {
+        adapter.setOnFishClick(new ProductAdapter.OnFishClick() {
             @Override
-            public void onClick(View view, int position, Fish fish) {
+            public void onClick(View view, int position, Product product) {
 
                 Intent i = new Intent(HomeActivity.this, SendDialog.class);
                 i.putExtra("location", location);
+                i.putExtra("product", product.getName());
                 startActivity(i);
             }
         });

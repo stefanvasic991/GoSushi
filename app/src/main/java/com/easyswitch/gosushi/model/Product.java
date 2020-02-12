@@ -1,11 +1,19 @@
 package com.easyswitch.gosushi.model;
 
-public class Fish {
+public class Product {
 
     private String name;
     private Integer mass;
     private String startDate;
     private String endDate;
+
+    public Product() {
+
+    }
+
+    public Product(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;

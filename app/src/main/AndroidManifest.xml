@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.easyswitch.gosushi">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -12,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".dialog.SendDialog"
+        <activity android:name=".view.AdminActivity"></activity>
+        <activity
+            android:name=".dialog.SendDialog"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeDialog" />

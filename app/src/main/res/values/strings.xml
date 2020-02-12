@@ -8,4 +8,7 @@
     <string name="weight">Težina:</string>
     <string name="undo">poništi</string>
     <string name="print">štampaj</string>
+    <string name="mass">Masa (kg)</string>
+    <string name="productName">Proizvod</string>
+    <string name="endDate">Upotrebljivo do</string>
 </resources>
