@@ -26,12 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
-        if (id  == R.id.list_item) {
+        if (id == R.id.list_item) {
             Intent i = new Intent(this, AdminActivity.class);
             startActivity(i);
         }

@@ -86,18 +86,19 @@ public class SendDialog extends AppCompatActivity {
         product.setEndDate(tvDateExpired.getText().toString());
         product.setMass(Integer.parseInt(etWeight.getText().toString()));
         product.setName(tvProduct.getText().toString());
+        product.setLocationName(location);
         pushInformationToFireBase(product);
         finish();
     }
 
 
-    private void initComponents(){
+    private void initComponents() {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
     }
 
-    private void pushInformationToFireBase(Product product){
-        ref.child("Product Information").child(location).push().setValue(product);
+    private void pushInformationToFireBase(Product product) {
+        ref.child("Product Information").push().setValue(product);
     }
 }

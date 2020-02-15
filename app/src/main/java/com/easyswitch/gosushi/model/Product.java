@@ -6,9 +6,18 @@ public class Product {
     private Integer mass;
     private String startDate;
     private String endDate;
+    private String locationName;
 
     public Product() {
 
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 
     public Product(String name) {

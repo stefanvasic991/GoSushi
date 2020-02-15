@@ -31,16 +31,15 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminHolder>
     @Override
     public AdminHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new AdminHolder(LayoutInflater.from(parent.getContext())
-        .inflate(R.layout.item_admin, parent, false));
+                .inflate(R.layout.item_admin, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdminHolder holder, int position) {
         Product product = productList.get(position);
-
-//        holder.tvProductName.setText(product.getName());
-//        holder.tvMass.setText(product.getMass());
-//        holder.tvExpDate.setText(product.getEndDate());
+        holder.tvProductName.setText(product.getName());
+        holder.tvMass.setText(" " + product.getMass());
+        holder.tvExpDate.setText(" " + product.getEndDate());
     }
 
     @Override
