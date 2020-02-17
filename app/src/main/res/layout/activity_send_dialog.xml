@@ -148,7 +148,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.3"
                     android:paddingTop="5dp"
-                    android:text="kg"
+                    android:text="g"
                     android:textColor="@color/colorPrimary"
                     android:textSize="22sp" />
             </LinearLayout>

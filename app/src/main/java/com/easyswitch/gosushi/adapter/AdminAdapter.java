@@ -37,6 +37,8 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminHolder>
     @Override
     public void onBindViewHolder(@NonNull AdminHolder holder, int position) {
         Product product = productList.get(position);
+
+        holder.tvRestaurant.setText(product.getLocationName());
         holder.tvProductName.setText(product.getName());
         holder.tvMass.setText(" " + product.getMass());
         holder.tvExpDate.setText(" " + product.getEndDate());
@@ -49,6 +51,8 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.AdminHolder>
 
     class AdminHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.tvRestaurant)
+        TextView tvRestaurant;
         @BindView(R.id.tvProductName)
         TextView tvProductName;
         @BindView(R.id.tvMass)

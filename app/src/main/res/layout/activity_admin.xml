@@ -23,6 +23,20 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:paddingTop="16dp"
+            android:text="@string/restaurant"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:background="@color/colorWhite"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:paddingTop="16dp"
             android:text="@string/productName"
             android:textSize="20sp"
             android:textStyle="bold"
