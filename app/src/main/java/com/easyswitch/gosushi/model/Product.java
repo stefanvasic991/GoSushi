@@ -7,6 +7,7 @@ public class Product {
     private String startDate;
     private String endDate;
     private String locationName;
+    private String lot;
 
     public Product() {
 
@@ -54,5 +55,13 @@ public class Product {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getLot() {
+        return lot;
+    }
+
+    public void setLot(String lot) {
+        this.lot = lot;
     }
 }

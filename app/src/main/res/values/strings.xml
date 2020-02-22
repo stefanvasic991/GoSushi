@@ -5,6 +5,7 @@
     <string name="product">Proizvod:</string>
     <string name="print_time">Vreme štampe:</string>
     <string name="expired_time">Vreme iskorišćenja:</string>
+    <string name="lot">LOT:</string>
     <string name="weight">Težina:</string>
     <string name="undo">poništi</string>
     <string name="print">štampaj</string>

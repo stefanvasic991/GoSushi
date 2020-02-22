@@ -1,15 +1,24 @@
 package com.easyswitch.gosushi.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.bxl.config.editor.BXLConfigLoader;
 import com.easyswitch.gosushi.R;
 import com.easyswitch.gosushi.adapter.ProductAdapter;
+import com.easyswitch.gosushi.bixolonPrinter.PrinterConnectActivity;
+import com.easyswitch.gosushi.bixolonPrinter.PrinterControl.BixolonPrinter;
 import com.easyswitch.gosushi.dialog.SendDialog;
 import com.easyswitch.gosushi.model.Product;
 
@@ -20,6 +29,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity {
+    private static BixolonPrinter bxlPrinter;
+    private int portType = BXLConfigLoader.DEVICE_BUS_BLUETOOTH;
 
     @BindView(R.id.rvFish)
     RecyclerView rvFish;
@@ -27,6 +38,8 @@ public class HomeActivity extends AppCompatActivity {
     List<Product> productList = new ArrayList<>();
     ProductAdapter adapter;
     private String location;
+    private String logicalName = "SPP-R200II";
+    private String address = "74:F0:7D:E3:8D:E2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +75,59 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        final int ANDROID_NOUGAT = 24;
+        if(Build.VERSION.SDK_INT >= ANDROID_NOUGAT) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
+        bxlPrinter = new BixolonPrinter(this);
+
+        Thread.setDefaultUncaughtExceptionHandler(new AppUncaughtExceptionHandler());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.printer, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        if (id  == R.id.print) {
+//            Intent i = new Intent(this, PrinterConnectActivity.class);
+//                startActivityForResult(i, 200);
+            connectPrinter();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public static BixolonPrinter getPrinterInstance() {
+        return bxlPrinter;
+    }
+
+    public class AppUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
+        @Override
+        public void uncaughtException(Thread thread, final Throwable ex) {
+            ex.printStackTrace();
+
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(10);
+        }
+    }
+
+    private void connectPrinter() {
+
+        if (HomeActivity.getPrinterInstance().printerOpen(portType, logicalName, address, true)) {
+            Toast.makeText(this, "Štampač je povezan!", Toast.LENGTH_LONG).show();
+//                setResult(RESULT_OK);
+//                finish();
+        } else {
+
+            Toast.makeText(this, "Došlo je do greške. Proverite da li je bluetooth uključen.", Toast.LENGTH_LONG).show();
+        }
     }
 }

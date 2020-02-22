@@ -11,12 +11,19 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "x86_64"
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    sourceSets.main {
+        jniLibs.srcDir 'src/main/libs'
     }
     packagingOptions {
         exclude 'META-INF/library_release.kotlin_module'
@@ -28,6 +35,7 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/notice.txt'
         exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/androidx.core_core.version'
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
 
@@ -50,23 +58,21 @@ allprojects {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:support-compat:29.0.0'
+    implementation 'com.android.support:design:29.0.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.android.support:appcompat-v7:29.+'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:support-v4:29.+'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
-
     //Firebase
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
     implementation 'com.google.firebase:firebase-core:17.2.2'
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
-
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
     //Multi dex
     implementation 'androidx.multidex:multidex:2.0.1'
     //Butter Knife
@@ -75,26 +81,24 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
     //RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     // Card view
     implementation 'androidx.cardview:cardview:1.0.0'
     //Gson
     implementation 'com.google.code.gson:gson:2.8.5'
     //Architecture Components
-    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
     //AH Bottom navigation
     implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
-
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'com.squareup.retrofit2:converter-simplexml:2.3.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-
     //KizitonWose kotlin calendar
-    implementation "com.github.kizitonwose:CalendarView:0.2.8"
+    implementation 'com.github.kizitonwose:CalendarView:0.2.8'
     implementation 'androidx.viewpager:viewpager:1.0.0'
-    implementation "androidx.work:work-runtime:2.3.0"
+    implementation 'androidx.work:work-runtime:2.3.2'
     //Circle image view
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     //Circular progress bar
@@ -111,26 +115,25 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'
-
     //QR Code
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
-
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    implementation 'com.getkeepsafe.relinker:relinker:1.2.3'
+
+    //WorkManager
+
+
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-
     implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
-
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'com.google.firebase:firebase-auth:19.2.0'
-    implementation 'com.google.firebase:firebase-database:19.2.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
