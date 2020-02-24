@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.easyswitch.gosushi.Helper.ExelConverter;
 import com.easyswitch.gosushi.R;
 import com.easyswitch.gosushi.adapter.AdminAdapter;
 import com.easyswitch.gosushi.model.Product;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,8 @@ public class AdminActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private FirebaseDatabase database;
     private FirebaseAuth mAuth;
+    private ExelConverter exelConverter;
+    private File exelFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +74,17 @@ public class AdminActivity extends AppCompatActivity {
                 rvAdminList.setLayoutManager(new LinearLayoutManager(getApplication()));
                 rvAdminList.setAdapter(adapter);
 
+                try {
+                    exelConverter.setExelFile(exelFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    exelConverter.writeExelFile(productList);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
@@ -83,6 +99,7 @@ public class AdminActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         firebaseUser = mAuth.getCurrentUser();
         productList = new ArrayList<>();
+        exelConverter = new ExelConverter(getApplicationContext());
     }
 
     @Override
